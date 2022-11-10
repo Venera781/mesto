@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+    <div class="page__content">
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        <main>
+            <section class="profile">
+                <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="Фото Жак-Ив Кусто">
+                <div class="profile__info">
+                    <div class="profile__wrapper">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button" aria-label="Редактировать" ></button>
+                    </div>
+                    <p class="profile__profession">Исследователь океана</p>
+                </div>
+                <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
+            </section>
+            <section class="elements">
+            </section>
+            <template id="elements">
+                <article class="element">
+                    <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                    <button class="element__icon-trash" type="button" aaria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+            </template>
+
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
+        </footer>
+    </div>
+    
+    <div class="popup">
+        <div class="popup__container">
+            <form class="popup__content" name="profile">
+                <h3 class="popup__heading">Редактировать профиль</h3>
+                <input class="popup__item" type="text" name="name" value="Жак-Ив Кусто" required>
+                <input class="popup__item" type="text" name="profession" value="Исследователь океана" required>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__close" type="button"></button>
+        </div>
+    </div>
+
+    <div class="element__popup">
+        <div class="element__popup-container">
+            <img class="element__popup-image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+            <h2 class="element__popup-title">Карачаевск</h2>
+            <button class="element__popup-close" type="button"></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="./pages/index.js"></script>
+</body>
+
+</html>
