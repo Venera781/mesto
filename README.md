@@ -14,5 +14,5 @@ HTML
 Flexbox
 Grid
 
-** Ссылка на gitHubPages
+**Ссылка на GitHubPages**
 https://venera781.github.io/mesto/
