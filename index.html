@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+    <div class="page__content">
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        <main>
+            <section class="profile">
+                <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="Фото Жак-Ив Кусто">
+                <div class="profile__info">
+                    <div class="profile__wrapper">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
+                    </div>
+                    <p class="profile__profession">Исследователь океана</p>
+                </div>
+                <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
+            </section>
+            <section class="elements">
+                <article class="element">
+                    <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__image" src="./images/arkhyz.jpeg" alt="Архыз">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Архыз</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__image" src="./images/chelyabinsk-oblast.jpeg" alt="Челябинская область">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Челябинская область</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__image" src="./images/ivanovo.jpeg" alt="Иваново">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Иваново</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__image" src="./images/kamchatka.jpeg" alt="Камчатка">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Камчатка</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__image" src="./images/kholmogorsky-rayon.jpeg" alt="Холмогорский район">
+                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
+                    <div class="element__wrapper">
+                        <h2 class="element__title">Холмогорский район</h2>
+                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
+        </footer>
+    </div>
+    <div class="popup popup_type_profile">
+        <div class="popup__container">
+            <form class="popup__content" name="profile">
+                <h3 class="popup__heading">Редактировать профиль</h3>
+                <input class="popup__item" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто" required>
+                <input class="popup__item" type="text" name="profession" placeholder="Профессия"
+                    value="Исследователь океана" required>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__close" type="button"></button>
+        </div>
+    </div>
+
+    <div class="popup popup_type_addimage">
+        <div class="popup__container">
+            <form class="popup__content" name="addimage">
+                <h3 class="popup__heading">Новое место</h3>
+                <input class="popup__item" type="text" name="placename" placeholder="Название" required>
+                <input class="popup__item" type="text" name="link" placeholder="Ссылка на картинку" required>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__close" type="button"></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="./pages/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.element__image {
+    display: flex;
+    max-width: 282px;
+    min-height: 282px;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.element__image:hover {
+    opacity: 0.6;
+}
