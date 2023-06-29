@@ -14,6 +14,8 @@ const profileProfession = document.querySelector('.profile__profession');
 //Функция Открытие popup//
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  nameInputProfile.value = profileName.textContent;
+  jobInputProfile.value = profileProfession.textContent;
 }
 //Функция Закрытие popup//
 function closePopup(popup) {
@@ -25,11 +27,6 @@ buttonCloseProfile.addEventListener('click', () => closePopup(popupProfile));
 
 
 // Форма Редактирование Профиля =  Редактирование и cохранение новых данных Профиля//
-function saveProfile() {
-  profileName.textContent = nameInputProfile.value;
-  profileProfession.textContent = jobInputProfile.value;
-}
-
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 function handleFormSubmitProfile(evt) {
   evt.preventDefault();
@@ -37,6 +34,6 @@ function handleFormSubmitProfile(evt) {
   profileProfession.textContent = jobInputProfile.value;
   closePopup(popupProfile);
 }
-btnSubmitProfile.addEventListener('click', () => saveProfile(formProfile));
+
 
 
