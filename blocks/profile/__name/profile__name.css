@@ -20,11 +20,13 @@
         line-height: 34px;
         margin-right: 10px;
         margin-left: auto;
+        
     }
 }
 
 @media screen and (max-width: 320px) {
     .profile__name {
         line-height: 33px;
+  
     }
 }

@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: 30px;
+    margin-left: auto;
     background-image: url(../../../images/plus.svg);
     background-repeat: no-repeat;
     background-size: 22px 22px;
