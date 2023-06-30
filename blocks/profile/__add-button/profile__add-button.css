@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 30px;
     background-image: url(../../../images/plus.svg);
     background-repeat: no-repeat;
     background-size: 22px 22px;
@@ -28,6 +28,7 @@
     .profile__add-button {
         min-width: 282px;
         margin-right: auto;
+        margin-left: auto;
         background-size: 16px 16px;
     }
 }
