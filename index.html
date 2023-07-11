@@ -27,6 +27,8 @@
                 <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
             </section>
             <section class="elements">
+            </section>
+            <template id="elements">
                 <article class="element">
                     <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
                     <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
@@ -35,47 +37,7 @@
                         <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
                     </div>
                 </article>
-                <article class="element">
-                    <img class="element__image" src="./images/arkhyz.jpeg" alt="Архыз">
-                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Архыз</h2>
-                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/chelyabinsk-oblast.jpeg" alt="Челябинская область">
-                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Челябинская область</h2>
-                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/ivanovo.jpeg" alt="Иваново">
-                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Иваново</h2>
-                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/kamchatka.jpeg" alt="Камчатка">
-                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Камчатка</h2>
-                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/kholmogorsky-rayon.jpeg" alt="Холмогорский район">
-                    <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Холмогорский район</h2>
-                        <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
-                    </div>
-                </article>
-            </section>
+            </template>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
@@ -93,7 +55,6 @@
             <button class="popup__close" type="button"></button>
         </div>
     </div>
-
     <div class="popup popup_type_addimage">
         <div class="popup__container">
             <form class="popup__content" name="addimage">
@@ -105,6 +66,14 @@
             <button class="popup__close" type="button"></button>
         </div>
     </div>
+    <div class="popup popup_type_element">
+        <div class="popup__container">
+            <img class="popup__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+            <h2 class="popup__title">Карачаевск</h2>
+            <button class="popup__close" type="button"></button>
+        </div>
+    </div>
+
     <script type="text/javascript" src="./pages/index.js"></script>
 </body>
 </html>
