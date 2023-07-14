@@ -65,7 +65,12 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-buttonEdit.addEventListener('click', () => openPopup(popupProfile));
+buttonEdit.addEventListener('click', () => { 
+  nameInputProfile.value = profileName.textContent;
+  jobInputProfile.value = profileProfession.textContent;
+  openPopup(popupProfile);
+});
+
 buttonCloseProfile.addEventListener('click', () => closePopup(popupProfile));
 buttonAddImage.addEventListener('click', () => openPopup(popupAddImage));
 buttonCloseAddImage.addEventListener('click', () => closePopup(popupAddImage));
