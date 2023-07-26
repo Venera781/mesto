@@ -1,4 +1,4 @@
-.popup__item {
+.popup__input {
     width: 358px;
     border: 0;
     box-sizing: border-box;
@@ -13,21 +13,25 @@
     white-space: nowrap;
     overflow: hidden;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding-bottom: 13px;
+    padding: 13px 0;
 
 }
 
-.popup__item:not(:last-of-type) {
+.popup__input:not(:last-of-type) {
     margin-bottom: 30px;
 }
 
+.popup__input:not(:last-of-type).popup__input_type_error  {
+    margin-bottom: 8px;
+}
+
 @media screen and (max-width: 624px) {
-    .popup__item {
+    .popup__input {
         width: 238px;
         margin-top: 0;
     }
 
-    .popup__item:focus {
+    .popup__input:focus {
         outline: none;
     }
 }

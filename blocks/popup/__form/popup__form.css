@@ -1,4 +1,4 @@
-.popup__content {
+.popup__form {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 624px) {
-    .popup__content {
+    .popup__form {
         padding-top: 25px;
         padding-left: 22px;
         padding-bottom: 25px;
