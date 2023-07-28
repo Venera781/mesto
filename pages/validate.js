@@ -1,3 +1,13 @@
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+}
+
+
 const showInputError = (form, input, validationConfig) => {
   const span = form.querySelector(`.${input.id}-error`);
   input.classList.add(validationConfig.inputErrorClass);
@@ -12,7 +22,8 @@ const hideInputError = (form, input, validationConfig) => {
   span.textContent = " ";
 };
 
-const checkInputValidity = (form, input, validationConfig) => {
+const checkInputValidity = (form, input,  validationConfig) => {
+  //removeError(form, input, button, validationConfig)
   if (!input.validity.valid) {
     showInputError(form, input, validationConfig);
   } else {
@@ -42,7 +53,7 @@ const setEventListeners = (form, validationConfig) => {
   toggleButtonState(inputs, button, validationConfig);
 
   inputs.forEach((input) => {
-    input.addEventListener("input", () => {
+    input.addEventListener('input', () => {
       checkInputValidity(form, input, validationConfig);
       toggleButtonState(inputs, button, validationConfig);
     });
@@ -54,10 +65,22 @@ function enableValidation(validationConfig) {
     document.querySelectorAll(validationConfig.formSelector)
   );
   forms.forEach((form) => {
-    form.addEventListener("submit", function (evt) {
+    form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
 
     setEventListeners(form, validationConfig);
   });
 }
+
+const resetError = (form, validationConfig) => {
+  const inputs = Array.from(
+    form.querySelectorAll(validationConfig.inputSelector)
+  );
+  const button = form.querySelector(validationConfig.submitButtonSelector);
+  toggleButtonState(inputs, button, validationConfig);
+
+  inputs.forEach((input) => {
+      checkInputValidity(form, input, validationConfig);
+    });
+  };

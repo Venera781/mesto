@@ -18,12 +18,17 @@
 }
 
 .popup__input:not(:last-of-type) {
-    margin-bottom: 30px;
+    margin-bottom: 38px;
 }
 
-.popup__input:not(:last-of-type).popup__input_type_error  {
-    margin-bottom: 8px;
+.popup__input:valid {
+    margin-bottom: 38px; 
 }
+
+.popup__input:invalid {
+    margin-bottom: 8px; 
+}
+
 
 @media screen and (max-width: 624px) {
     .popup__input {
