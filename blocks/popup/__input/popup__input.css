@@ -21,11 +21,11 @@
     margin-bottom: 38px;
 }
 
-.popup__input:valid {
+.popup__input .popup__input_type_error {
     margin-bottom: 38px; 
 }
 
-.popup__input:invalid {
+.popup__input.popup__input_type_error {
     margin-bottom: 8px; 
 }
 

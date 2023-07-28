@@ -23,7 +23,7 @@ const hideInputError = (form, input, validationConfig) => {
 };
 
 const checkInputValidity = (form, input,  validationConfig) => {
-  //removeError(form, input, button, validationConfig)
+  
   if (!input.validity.valid) {
     showInputError(form, input, validationConfig);
   } else {
@@ -73,7 +73,7 @@ function enableValidation(validationConfig) {
   });
 }
 
-const resetError = (form, validationConfig) => {
+const  resetFormState = (form, validationConfig, hideErrors) => {
   const inputs = Array.from(
     form.querySelectorAll(validationConfig.inputSelector)
   );
@@ -81,6 +81,10 @@ const resetError = (form, validationConfig) => {
   toggleButtonState(inputs, button, validationConfig);
 
   inputs.forEach((input) => {
-      checkInputValidity(form, input, validationConfig);
+      if(hideErrors) {
+        hideInputError(form, input, validationConfig);
+      } else{
+        checkInputValidity(form, input, validationConfig);
+      }
     });
   };

@@ -133,8 +133,6 @@ function createCard(nameCard, linkCard) {
 
 //Отображение исходного массива карточек на сайте //
 function showImageOnsite(cards) {
-  elementsBlock.innerHTML = "";
-
   for (let i = 0; i < cards.length; i++) {
     elementsBlock.append(createCard(cards[i].name, cards[i].link));
   }
@@ -163,13 +161,14 @@ function handleFormSubmitAddImage(evt) {
 buttonEdit.addEventListener('click', () => {
   nameInputProfile.value = profileName.textContent;
   jobInputProfile.value = profileProfession.textContent;
-  resetError(popupProfile, validationConfig)
+  resetFormState(popupProfile, validationConfig, false);
   openPopup(popupProfile);
 });
 
-buttonAddImage.addEventListener('click', ()=> {
-resetError(popupAddImage, validationConfig)
-openPopup(popupAddImage)});
+buttonAddImage.addEventListener('click', () => {
+  resetFormState(popupAddImage, validationConfig, true);
+  openPopup(popupAddImage);
+});
 
 buttonCloseAddImage.addEventListener('click', () => closePopup(popupAddImage));
 buttonCloseImage.addEventListener('click', () => closePopup(elementPopup));
