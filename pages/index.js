@@ -1,3 +1,15 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+};
+
 // Определение переменных для Формы Редактирования//
 const buttonEdit = document.querySelector(".profile__edit-button");
 const popupProfile = document.querySelector(".popup.popup_type_profile");
@@ -9,6 +21,7 @@ const jobInputProfile = popupProfile.querySelector(
 );
 const buttonCloseProfile = popupProfile.querySelector(".popup__button");
 const formProfile = popupProfile.querySelector(".popup__form");
+const validatorProfile = new FormValidator (validationConfig, formProfile);
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
@@ -19,7 +32,6 @@ const popupImage = elementPopup.querySelector(".popup__image");
 const popupImageTitle = elementPopup.querySelector(".popup__title");
 
 const elementsBlock = document.querySelector(".elements");
-const templateElements = document.querySelector("#elements").content;
 
 //Определение переменных для Формы Добавления Картинки//
 const buttonAddImage = document.querySelector(".profile__add-button");
@@ -32,6 +44,8 @@ const linkInputAddImage = popupAddImage.querySelector(
 );
 const buttonCloseAddImage = popupAddImage.querySelector(".popup__button");
 const formAddImage = popupAddImage.querySelector(".popup__form");
+const validatorAddImage = new FormValidator(validationConfig, formAddImage);
+
 const initialCards = [
   {
     name: "Архыз",
@@ -99,36 +113,17 @@ function handleFormSubmitProfile(evt) {
   closePopup(popupProfile);
 }
 
-//Функция создания карточки//
+// Функция создания карточки//
 function createCard(nameCard, linkCard) {
-  const itemElement = templateElements
-    .querySelector(".element")
-    .cloneNode(true);
-  const itemElementImage = itemElement.querySelector(".element__image");
-  itemElementImage.src = linkCard;
-  itemElement.querySelector(".element__title").textContent = nameCard;
-  itemElementImage.setAttribute("alt", nameCard);
-
-  //Ставить лайк//
-  itemElement
-    .querySelector(".element__icon-heart")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__icon-heart_active");
-    });
-
-  //Удалить карточку//
-  itemElement
-    .querySelector(".element__icon-trash")
-    .addEventListener("click", (evt) => {
-      evt.target.closest(".element").remove();
-    });
-
-  //Открытие Popup Картинки//
-  itemElementImage.addEventListener("click", (evt) => {
-    showPopupImage(evt.target.src, nameCard);
-  });
-
-  return itemElement;
+  const card = new Card(
+    {
+      name: nameCard,
+      link: linkCard,
+    },
+    ".element",
+    showPopupImage
+  );
+  return card.getCard();
 }
 
 //Отображение исходного массива карточек на сайте //
@@ -147,8 +142,8 @@ function showPopupImage(imageLink, name) {
 }
 
 //Функция добавления созданной карточки в контейнер '.elements'//
-function renderCard(card) {
-  elementsBlock.prepend(card);
+function renderCard(cardEl) {
+  elementsBlock.prepend(cardEl);
 }
 
 function handleFormSubmitAddImage(evt) {
@@ -161,13 +156,12 @@ function handleFormSubmitAddImage(evt) {
 buttonEdit.addEventListener("click", () => {
   nameInputProfile.value = profileName.textContent;
   jobInputProfile.value = profileProfession.textContent;
-  resetFormState(popupProfile, validationConfig, false);
+  validatorProfile.resetFormState(false);
   openPopup(popupProfile);
 });
 
 buttonAddImage.addEventListener("click", () => {
-  formAddImage.reset();
-  resetFormState(popupAddImage, validationConfig, true);
+  validatorAddImage.resetFormState(true);
   openPopup(popupAddImage);
 });
 
@@ -178,4 +172,5 @@ buttonCloseProfile.addEventListener("click", () => closePopup(popupProfile));
 formAddImage.addEventListener("submit", handleFormSubmitAddImage);
 
 showImageOnsite(initialCards);
-enableValidation(validationConfig);
+validatorProfile.enableValidation();
+validatorAddImage.enableValidation();
