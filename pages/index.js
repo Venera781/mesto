@@ -2,12 +2,12 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
 };
 
 // Определение переменных для Формы Редактирования//
@@ -21,7 +21,7 @@ const jobInputProfile = popupProfile.querySelector(
 );
 const buttonCloseProfile = popupProfile.querySelector(".popup__button");
 const formProfile = popupProfile.querySelector(".popup__form");
-const validatorProfile = new FormValidator (validationConfig, formProfile);
+const validatorProfile = new FormValidator(validationConfig, formProfile);
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
@@ -76,28 +76,31 @@ const initialCards = [
 //Функция Открытие popup//
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-
-  //Закрытие окна попапа клавишей ESC
-  window.addEventListener("keyup", function keyupListener(event) {
-    if (event.code === "Escape" && popup.classList.contains("popup_opened")) {
-      window.removeEventListener("keyup", keyupListener);
-      closePopup(popup);
-    }
-  });
-
-  //Закрытие попапа кликом на оверлей
-  popup.addEventListener("click", function clickListener(event) {
-    const target = event.target;
-    if (!target.closest(".popup__container")) {
-      popup.removeEventListener("click", clickListener);
-      closePopup(popup);
-    }
-  });
+  window.addEventListener("keydown", closeByEscape);
+  popup.addEventListener("click", closeOverlayByClick);
 }
 
 //Функция Закрытие popup//
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  window.removeEventListener("keydown", closeByEscape);
+  popup.removeEventListener("click", closeOverlayByClick);
+}
+
+//Функция закрытия окна попапа клавишей ESC
+function closeByEscape(evt) {
+  if (evt.code === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+}
+
+//Закрытие попапа кликом на оверлей
+function closeOverlayByClick(evt) {
+  const popup = evt.target;
+  if (!popup.closest(".popup__container")) {
+    closePopup(popup);
+  }
 }
 
 // Форма Редактирование Профиля =  Редактирование и cохранение новых данных Профиля//
