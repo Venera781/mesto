@@ -11,11 +11,11 @@ class PopupWithForm extends Popup {
   }
 
   _getInputHelper(isValues) {
-    const rv = {};
+    const data = {};
     for (const input of this._inputs) {
-      rv[input.name] = isValues ? input.value : input;
+      data[input.name] = isValues ? input.value : input;
     }
-    return rv;
+    return data;
   }
 
   _getInputValues() {
@@ -39,13 +39,11 @@ class PopupWithForm extends Popup {
     this._formEl.reset();
   }
 
-  open(initFormFn) {
-    if (initFormFn) {
-      const inputs = this._getInputHelper(false);
-      initFormFn(inputs);
+  setInputValues(inputsData) {
+      this._inputs.forEach((input) => { 
+        input.value = inputsData[input.name] || ""
+      })
     }
-    super.open();
-  }
 }
 
 export default PopupWithForm;

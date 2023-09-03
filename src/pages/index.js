@@ -1,20 +1,11 @@
 import "./index.css";
+import { validationConfig, initialCards } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import Section from "../components/Section";
-
-
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
 
 // Определение переменных для Формы Редактирования//
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -41,40 +32,16 @@ const popupAddImage = document.querySelector(".popup.popup_type_addimage");
 const formAddImage = popupAddImage.querySelector(".popup__form");
 const validatorAddImage = new FormValidator(validationConfig, formAddImage);
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-const sectionClass = new Section({items: initialCards, renderer: createCard}, ".elements");
+const sectionClass = new Section(
+  { items: initialCards, renderer: renderCard },
+  ".elements"
+);
 
 const popupClassAddImage = new PopupWithForm(
   ".popup_type_addimage",
   validationConfig,
-  ({placename, link}) => {
-    sectionClass.addItem(createCard({name: placename, link}));
+  ({ placename, link }) => {
+    sectionClass.addItem({ name: placename, link });
     popupClassAddImage.close();
   }
 );
@@ -84,7 +51,7 @@ function handleCardClick(nameCard, linkCard) {
 }
 
 // Функция создания карточки//
-function createCard({name, link}) {
+function renderCard({ name, link }, parentEl) {
   const card = new Card(
     {
       name,
@@ -93,16 +60,14 @@ function createCard({name, link}) {
     ".element",
     handleCardClick
   );
-  return card.getCard();
+  parentEl.prepend(card.getCard());
 }
 
 buttonEdit.addEventListener("click", () => {
   validatorProfile.resetFormState(false);
-  popupClassProfile.open((inputs) => {
-    const info = profileInfo.getUserInfo();
-    inputs.name.value = info.name;
-    inputs.profession.value = info.profession;
-  });
+  const info = profileInfo.getUserInfo();
+  popupClassProfile.setInputValues(info);
+  popupClassProfile.open();
 });
 
 buttonAddImage.addEventListener("click", () => {

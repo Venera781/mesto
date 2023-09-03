@@ -5,13 +5,13 @@ class Section {
     this._parentEl = document.querySelector(elSelector);
   }
 
-  addItem(element) {
-    this._parentEl.prepend(element);
+  addItem(cardItem) {
+    this._renderer(cardItem, this._parentEl);
   }
-  
+
   render() {
     for (let i = 0; i < this._items.length; i++) {
-      this.addItem(this._renderer(this._items[i]));
+      this.addItem(this._items[i]);
     }
   };
 }
