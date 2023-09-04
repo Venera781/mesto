@@ -51,7 +51,7 @@ function handleCardClick(nameCard, linkCard) {
 }
 
 // Функция создания карточки//
-function renderCard({ name, link }, parentEl) {
+function renderCard({ name, link }) {
   const card = new Card(
     {
       name,
@@ -60,7 +60,7 @@ function renderCard({ name, link }, parentEl) {
     ".element",
     handleCardClick
   );
-  parentEl.prepend(card.getCard());
+  sectionClass.addItem(card.getCard()) ;
 }
 
 buttonEdit.addEventListener("click", () => {
@@ -75,6 +75,6 @@ buttonAddImage.addEventListener("click", () => {
   popupClassAddImage.open();
 });
 
-sectionClass.render();
+sectionClass.render(initialCards);
 validatorProfile.enableValidation();
 validatorAddImage.enableValidation();

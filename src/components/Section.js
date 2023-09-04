@@ -1,19 +1,18 @@
 class Section {
-  constructor({ items, renderer }, elSelector) {
-    this._items = items;
+  constructor({ renderer }, elSelector) {
     this._renderer = renderer;
     this._parentEl = document.querySelector(elSelector);
   }
 
-  addItem(cardItem) {
-    this._renderer(cardItem, this._parentEl);
+  addItem(element) {
+    this._parentEl.prepend(element);
   }
 
-  render() {
-    for (let i = 0; i < this._items.length; i++) {
-      this.addItem(this._items[i]);
-    }
-  };
+  render(items) {
+    items.forEach((item) => { 
+      this._renderer(item);
+    })
+  }
 }
 
 export default Section;
