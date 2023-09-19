@@ -17,6 +17,10 @@
     opacity: 0.8;
 }
 
+.popup__submit-button:disabled {
+    opacity: 0.2;
+}
+
 @media screen and (max-width: 624px) {
     .popup__submit-button {
         width: 238px;

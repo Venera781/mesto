@@ -5,6 +5,9 @@ class PopupWithForm extends Popup {
     super(selector);
     this._submitFn = submitFn;
     this._formEl = this._el.querySelector(validationConfig.formSelector);
+    this._submitEl = this._formEl.querySelector(
+      validationConfig.submitButtonSelector
+    );
     this._inputs = Array.from(
       this._el.querySelectorAll(validationConfig.inputSelector)
     );
@@ -25,7 +28,13 @@ class PopupWithForm extends Popup {
   _handleFormSubmit = (evt) => {
     evt.preventDefault();
     const values = this._getInputValues();
-    this._submitFn(values);
+    const prevText = this._submitEl.textContent;
+    this._submitEl.textContent = "Сохранение...";
+    this._submitEl.disabled = true;
+    this._submitFn(values, () => {
+      this._submitEl.textContent = prevText;
+      this._submitEl.disabled = false;
+    });
   };
 
   setEventListeners() {
@@ -40,10 +49,10 @@ class PopupWithForm extends Popup {
   }
 
   setInputValues(inputsData) {
-      this._inputs.forEach((input) => { 
-        input.value = inputsData[input.name] || ""
-      })
-    }
+    this._inputs.forEach((input) => {
+      input.value = inputsData[input.name] || "";
+    });
+  }
 }
 
 export default PopupWithForm;

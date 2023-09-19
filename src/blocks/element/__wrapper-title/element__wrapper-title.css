@@ -1,5 +1,6 @@
-.element__wrapper {
+.element__wrapper-title {
     display: flex;
+    outline: 3px solid green;
     height: 100%;
     width: 100%;
     justify-content: space-between;

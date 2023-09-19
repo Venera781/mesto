@@ -1,4 +1,5 @@
 .element__icon-trash {
+    display: none;
     position: absolute;
     margin-top: 20px;
     right: 0;

@@ -15,7 +15,10 @@
         </header>
         <main>
             <section class="profile">
-                <img class="profile__avatar" src="<%=require('./images/profile_avatar.jpg')%>"alt="Фото Жак-Ив Кусто">
+                <div class="profile__avatar-wrapper">
+                    <img class="profile__avatar" src="<%=require('./images/profile_avatar.jpg')%>"
+                        alt="Фото Жак-Ив Кусто">
+                </div>
                 <div class="profile__info">
                     <div class="profile__wrapper">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -65,6 +68,28 @@
         <div class="popup__container">
             <img class="popup__image" src="<%=require('./images/karachaevsk.jpg')%>" alt="Карачаевск">
             <h2 class="popup__title">Карачаевск</h2>
+            <button type="submit" class="popup__submit-button" type="submit">Сохранить</button>
+            <button class="popup__button popup__close-btn" type="button"></button>
+        </div>
+    </div>
+    <div class="popup popup_type_confirm">
+        <div class="popup__container">
+            <form class="popup__form" name="confirmation" novalidate>
+                <h2 class="popup__heading">Вы уверены?</h2>
+                <button class="popup__submit-button">Да</button>
+            </form>
+            <button class="popup__button popup__close-btn" type="button"></button>
+        </div>
+    </div>
+    <div class="popup popup_type_update">
+        <div class="popup__container">
+            <form class="popup__form" name="updating" novalidate>
+                <h2 class="popup__heading">Обновить аватар</h2>
+                <input class="popup__input" type="url" id="avatar" name="avatar" placeholder="Ссылка на картинку"
+                    required>
+                <span class="avatar-error popup__input-error popup__input-error_last"></span>
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
             <button class="popup__button popup__close-btn" type="button"></button>
         </div>
     </div>
@@ -72,9 +97,12 @@
         <article class="element">
             <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
             <button class="element__icon-trash" type="button" aria-label="Удалить"></button>
-            <div class="element__wrapper">
+            <div class="element__wrapper-title">
                 <h2 class="element__title">Карачаевск</h2>
-                <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                <div class="element__wrapper-like">
+                    <button class="element__icon-heart" type="button" aria-label="Ставить лайк"></button>
+                    <p class="element__icon-like"></p>
+                </div>
             </div>
         </article>
     </template>

@@ -7,6 +7,6 @@
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 2;
-    visibility: hidden;
+    visibility: visible;
     transition: 0.5s;
 }

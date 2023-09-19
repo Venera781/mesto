@@ -1,5 +1,5 @@
 class Section {
-  constructor({ renderer }, elSelector) {
+  constructor(renderer, elSelector) {
     this._renderer = renderer;
     this._parentEl = document.querySelector(elSelector);
   }

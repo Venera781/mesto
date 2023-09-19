@@ -1,4 +1,8 @@
 class Popup {
+  /**
+   * Cоздание абстрактного класса Popup
+   * @param selector - селектор дял получения попапа;
+   */
   constructor(selector) {
     this._el = document.querySelector(selector);
     this._closeButtonEl = this._el.querySelector(".popup__close-btn");
