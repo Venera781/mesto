@@ -39,7 +39,7 @@ promiseInfoUser.then((userData) => {
 
   profileInfo.setUserInfo(userData);
 
-  const popupClassProfile = new PopupWithForm(
+  const popupElProfile = new PopupWithForm(
     ".popup.popup_type_profile",
     validationConfig,
     ({ name, profession }, onFinish) => {
@@ -51,7 +51,7 @@ promiseInfoUser.then((userData) => {
             profession: data.about,
             avatar: data.avatar,
           });
-          popupClassProfile.close();
+          popupElProfile.close();
         })
         .catch((err) => {
           console.log("Ошибка при отправки карточки", err);
@@ -67,7 +67,7 @@ promiseInfoUser.then((userData) => {
   const popupAvatar = document.querySelector(".popup.popup_type_update");
   const buttonAvatarEdit = document.querySelector(".profile__avatar-wrapper");
 
-  const popupClassAvatarEdit = new PopupWithForm(
+  const popupElAvatarEdit = new PopupWithForm(
     ".popup_type_update",
     validationConfig,
     ({ avatar }, onFinish) => {
@@ -77,7 +77,7 @@ promiseInfoUser.then((userData) => {
           profileInfo.setUserInfo({
             avatar: data.avatar,
           });
-          popupClassAvatarEdit.close();
+          popupElAvatarEdit.close();
         })
         .catch((err) => {
           console.log("Ошибка при отправки карточки", err);
@@ -90,7 +90,7 @@ promiseInfoUser.then((userData) => {
   const validatorAvatar = new FormValidator(validationConfig, formAvatar);
 
   //Экземпляр класса по создания разметки карточки//
-  const sectionClass = new Section(renderCard, ".elements");
+  const cardsContainer = new Section(renderCard, ".elements");
 
   //Определение переменных для Формы Добавления Картинки//
   const buttonAddImage = document.querySelector(".profile__add-button");
@@ -99,7 +99,7 @@ promiseInfoUser.then((userData) => {
   const validatorAddImage = new FormValidator(validationConfig, formAddImage);
 
   //Попап добавления картинки//
-  const popupClassAddImage = new PopupWithForm(
+  const popupElAddImage = new PopupWithForm(
     ".popup_type_addimage",
     validationConfig,
     ({ placename, link }, onFinish) => {
@@ -107,7 +107,7 @@ promiseInfoUser.then((userData) => {
         .addCard(placename, link)
         .then((data) => {
           renderCard(data);
-          popupClassAddImage.close();
+          popupElAddImage.close();
         })
         .catch((err) => {
           console.log("Ошибка при отправки карточки", err);
@@ -117,7 +117,7 @@ promiseInfoUser.then((userData) => {
   );
 
   //Определение переменных для Element=Image//
-  const popupClassOpenImage = new PopupWithImage(".popup_type_element");
+  const popupElOpenImage = new PopupWithImage(".popup_type_element");
 
   //Форма удаления картинки с попапом подтверждения//
   const popupDeleteCard = new PopupWithSubmit(
@@ -139,7 +139,7 @@ promiseInfoUser.then((userData) => {
   }
 
   function handleCardClick(nameCard, linkCard) {
-    popupClassOpenImage.open(nameCard, linkCard);
+    popupElOpenImage.open(nameCard, linkCard);
   }
 
   function handleLikeCard(card, alreadyLiked) {
@@ -168,26 +168,26 @@ promiseInfoUser.then((userData) => {
       handleCardDelete
       //handleLikeDelete,
     );
-    sectionClass.addItem(card.getCard());
+    cardsContainer.addItem(card.getCard());
   }
 
   buttonEdit.addEventListener("click", () => {
     const info = profileInfo.getUserInfo();
-    popupClassProfile.setInputValues(info);
+    popupElProfile.setInputValues(info);
     validatorProfile.resetFormState(false);
-    popupClassProfile.open();
+    popupElProfile.open();
   });
 
   buttonAvatarEdit.addEventListener("click", () => {
     const info = profileInfo.getUserInfo();
-    popupClassAvatarEdit.setInputValues(info);
+    popupElAvatarEdit.setInputValues(info);
     validatorAvatar.resetFormState(false);
-    popupClassAvatarEdit.open();
+    popupElAvatarEdit.open();
   });
 
   buttonAddImage.addEventListener("click", () => {
     validatorAddImage.resetFormState(true);
-    popupClassAddImage.open();
+    popupElAddImage.open();
   });
 
   validatorProfile.enableValidation();
@@ -197,7 +197,7 @@ promiseInfoUser.then((userData) => {
   const promiseCards = api.getInitialCards();
   promiseCards
     .then((cards) => {
-      sectionClass.render(cards);
+      cardsContainer.render(cards);
     })
     .catch((error) => {
       console.log(error);

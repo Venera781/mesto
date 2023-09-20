@@ -25,10 +25,10 @@ class Popup {
       this.close();
     }
   };
-
+  // Проверяем, что элемент где пользователь кликнул мышкой находится за пределами содержимого попапа (т.е. был клик по оверлею)//
   _handleOverlayClose = (evt) => {
-    const popup = evt.target;
-    if (!popup.closest(".popup__container")) {
+    const clickEl = evt.target;
+    if (!clickEl.closest(".popup__container")) {
       this.close();
     }
   };
@@ -39,7 +39,7 @@ class Popup {
 
   setEventListeners() {
     window.addEventListener("keydown", this._handleEscClose);
-    this._el.addEventListener("click", this._handleOverlayClose);
+    this._el.addEventListener("mousedown", this._handleOverlayClose);
     this._closeButtonEl.addEventListener("click", this._handleCloseButton);
   }
 }
